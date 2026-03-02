@@ -114,6 +114,27 @@ render-hyperreal-pipeline/
 
 ---
 
+
+## 🧪 Como acessar o link de teste
+
+Não existe um link de teste "pronto" neste repositório. Você precisa usar os seus próprios links:
+
+1. Copie `.env.example` para `.env`
+2. Preencha `GPT_ANALYZER_LINK` com o link público do seu GPT customizado
+3. Preencha `CHATGPT_GO_LINK` com `https://chatgpt.com` (ou o link específico que você usa)
+4. Abra esses links direto no navegador para confirmar que carregam normalmente (logado na sua conta)
+5. Rode `python main.py` para testar o pipeline
+
+Se quiser validar rápido no terminal se as variáveis foram carregadas:
+
+```bash
+python -c "from dotenv import load_dotenv; import os; load_dotenv(); print('GPT_ANALYZER_LINK=', os.getenv('GPT_ANALYZER_LINK')); print('CHATGPT_GO_LINK=', os.getenv('CHATGPT_GO_LINK'))"
+```
+
+> Observação: `gpt_analyzer.py` e `image_generator.py` usam fallback para `https://chatgpt.com` quando a variável não está definida, mas o recomendado é configurar explicitamente no `.env`.
+
+---
+
 ## 📊 Output
 
 Cada imagem processada gera:
@@ -158,7 +179,7 @@ Se a qualidade não passar:
 
 ## 💡 Dicas
 
-- **Primeira execução**: May levar tempo (Playwright precisa baixar navegador)
+- **Primeira execução**: Pode levar tempo (Playwright precisa baixar navegador)
 - **Imagens grandes**: Redimensiona automaticamente para 800x600
 - **Múltiplas imagens**: Processa sequencialmente (não em paralelo)
 - **Erros de conexão**: Verifica links nos `.env`
